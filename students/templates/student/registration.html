@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+	.cont{
+		margin-left: 350px;
+	}
+
+	@media only screen and (max-width: 600px) {
+	.cont {
+	width: 930px;
+	margin-left:8px;
+	}
+
+	.btn {
+	margin-left: 0px;
+	}
+	}
+</style>
+
+<div class="cont">
+
+<h1 class="text-warning">Sign Up</h1>
+<div class="module">
+	<p>Enter Your Details to create an account: </p>
+	<form method="post" class="form-control w-50">
+		{{form|crispy}}
+		{% csrf_token %}
+		<p><input type="submit" value="Create My Account" class="btn btn-success" ></p>
+	</form>
+</div>
+
+</div>
+
+{% endblock %}

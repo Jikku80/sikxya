@@ -1,0 +1,42 @@
+{% load static %}
+<nav id="nav">
+	<div class="nav-center">
+		<div class="nav-header">
+			<img src="{% static 'image/logo.png' %}" alt="logo" class="logo">
+			<h4 class='text-white'><b>शिक्षा</b></h4>
+
+			<button class="nav-toggle"><i class="fas fa-bars"></i></button>
+
+		</div>
+
+		<div class="links-container">
+			<ul class="links">
+				<li>
+					<a href="/" class="scroll"><i class="fas fa-home"></i></a>
+				</li>
+				{% if request.user.is_authenticated %}
+				<li>
+					<a href="{% url 'list' %}" class='scroll'><i class="fas fa-plus"></i></a>
+				</li>
+				<li>
+					<a href="{% url 'student_course_list' %}" class="scroll"><i
+							class="fas fa-book-reader"></i></a>
+				</li>
+				<li class='text-white'>
+					Hi, {{ user.username }}
+				</li>
+				<li>
+					<a href="{% url 'logout' %}" class="scroll"><i
+							class="fas fa-sign-out-alt"></i>signout</a>
+				</li>
+				{% else %}
+				<li>
+					<a href="{% url 'login' %}" class="scroll"><i
+							class="fas fa-sign-in-alt">signin</i></a>
+				</li>
+				{% endif %}
+
+			</ul>
+		</div>
+	</div>
+</nav>

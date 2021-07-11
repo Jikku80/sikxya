@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header id="home">
+	<div class="banner">
+		<div class="container">
+			<h1>Logged out</h1>
+			<div class="module">
+				<p>You have been successfully logged out.
+					You can <a class="butn butn-white" href="{% url 'login' %}">Log-in</a></p>
+			</div>
+		</div>
+	</div>
+</header>
+
+{% endblock %}

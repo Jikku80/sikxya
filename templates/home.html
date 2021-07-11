@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/side.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+<title>{% if subject %}{{subject.title}} Courses {%else%}शिक्षा{% endif %}</title>
+
+<body>
+	<header id="home">
+		<nav id="nav">
+			<div class="nav-center">
+				<div class="nav-header">
+					<img src="{% static 'image/logo.png' %}" alt="logo" class="logo">
+					<h6 class='text-white'><b>शिक्षा</b></h6>
+					<button class="nav-toggle"><i class="fas fa-bars"></i></button>
+				</div>
+
+				<div class="links-container">
+					<ul class="links">
+						<li>
+							<form action="{% url 'search_results' %}" method="get" class="con">
+								<input name="q" type="text" placeholder="Search...">
+								<div class="search"></div>
+							</form>
+						</li>
+						<li>
+							<a href="#home" class="scroll-link">
+								<i class="fas fa-home"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#about" class="scroll-link">
+								<i class="fas fa-address-card"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#services" class="scroll-link">
+								<i class="fas fa-cog"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#tours" class="scroll-link">
+								<i class="fas fa-book"></i>
+							</a>
+						</li>
+						{% if request.user.is_authenticated %}	
+						<li>
+							<a href="{% url 'list' %}" class='scroll'>
+								<i class="fas fa-plus"></i>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'student_course_list' %}" class="scroll">
+								<i class="fas fa-book-reader"></i>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'logout' %}" class="scroll">
+								<i class="fas fa-sign-out-alt">signout</i>
+							</a>
+						</li>
+						{% else %}
+						<li>
+							<a href="{% url 'login' %}" class="scroll"><i
+									class="fas fa-sign-in-alt">signIn</i></a>
+						</li>
+						{% endif %}
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="banner">
+			<div class="container">
+				{% if request.user.is_authenticated %}
+				<h1>शिक्षा</h1>
+				<h4 class="text-white">
+					Hi,<span class="text-danger fw-bold display-6 "> {{ user.username }} </span>
+				</h4>
+				<p>शिक्षा :- Yesterday is a histroy, Tommorrow is a Mystery, But Today is a gift, Which is why we call it PRESENT.
+					let's present Ourself Knowledge, INVEST IN OURSELF!
+				</p>
+				<a href="#tours" class="scroll-link butn butn-white">Courses</a>
+				{% else %}
+				<h1>Log In</h1>
+				<div class="module">
+					<p>You are not logged In, Please Log In!</p>
+				</div>
+				<div class="login">
+					<p><a class="butn butn-white" href="{% url 'login' %}">Log-in</a></p>
+				</div>
+				<br>
+				<div class="register">
+					<p>Dont have a Account?
+						<a href="{% url 'student_registration' %}" class="text-danger"><b>Register
+							Now!</b></a>
+					</p>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+
+	<section id="about" class="section">
+		<div class="title">
+			<h2>About <span>Us</span></h2>
+		</div>
+		<div class="container">
+			<p>शिक्षा helps you to learn courses at your comfortable place. The courses of
+				these websites
+				are offered by top universities. You can learn a specific subject without much
+				investment. These
+				websites
+				offer many audio, video, articles, and e-books to increase your knowledge. The platforms
+				enable
+				you to learn
+				the best free online courses.</p>
+			<p>शिक्षा is an online platform that helps you to create courses for categories like business,
+				design,
+				marketing, etc.
+
+				You can develop new skills and achieving their goals by learning from the extensive
+				library of
+				various
+				courses. Subjects that are available in शिक्षा are taught by expert instructions.
+
+				The outline of courses can be viewed on all devices connected to the internet. You do
+				not
+				require any
+				prequalification to take any course.
+			</p>
+		</div>
+
+	</section>
+
+	<section id="services" class="section">
+		<div class="title">
+			<h2>our <span>services</span></h2>
+		</div>
+		<div class="container">
+			<h3 class="text-center">Key Issues</h3>
+			<p>Creating customized eLearning platforms require expertise. Many service providers deliver
+				customized eLearning
+				platforms for enterprises. They guarantee access to didactic materials for the students
+				via a learning
+				management system (LMS).
+
+				However, most fail to utilize the latest technologies to enable life-changing outcomes
+				for online education.
+				They cannot design learner-centric courses to foster deeper learning and engagement.
+				Many do not integrate
+				customized dashboards, online forums, and other interactive elements. Their platforms
+				rarely target
+				self-paced learning and shareability. So, training employees and learners using those
+				platforms is not
+				worthwhile. Hence, before partnering with any agency, clients must ensure that all these
+				issues are taken
+				care of.
+			</p>
+			<img src="{% static 'image/logo.png'%}" alt='service' />
+		</div>
+	</section>
+
+	<section id="tours" class="section">
+		<div class="title">
+			<h2>our <span>Courses</span></h2>
+		</div>
+		<h2 class='alert alert-primary'>
+			<button class="sidebar-toggle pb-4 px-4">
+				<i class="fas fa-bars"></i>
+			</button>
+			{% if subject %} {{subject.title}} <span>Courses</span> {% else %}All
+			<span>Courses</span>{% endif %}
+		</h2>
+
+		<aside class="sidebar">
+			<div class="sidebar-header">
+				<h3 class="d-flex text-center mb-3 mb-md-0 me-md-auto px-2 text-white">Module</h3>
+				<button class="close-btn">
+					<i class="fas fa-times"></i>
+				</button>
+			</div>
+
+			<ul class="mod-links" id='modules'>
+				<li class='nav-item' {% if not subject %}class="active" {% endif %}>
+					<a href="{% url 'home' %}#tours"
+						class="nav-link text-decoration-none text-danger">All</a>
+				</li>
+				{% for s in subjects %}
+				<li data-id="{{ s.id }}" } class='nav-item' {% if s == subject %} class="active"
+					{% endif %}>
+					<a href="{% url 'course_list_subject' s.slug %}#tours"
+						class="nav-link text-decoration-none">
+						<h4 class="">{{ s.title }}</h4>
+						<span class="text-secondary">{{ s.total_courses }} courses</span>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</aside>
+		<div class="info">
+			{% for course in courses %}
+			{% with subject=course.subject %}
+			<h3>
+				<a href="{% url 'course_detail' course.slug %}" class="btn btn-outline-danger">
+					{{ course.title }}
+				</a>
+			</h3>
+			<p>
+				<a href="{% url 'course_list_subject' subject.slug %}#tours"
+					class="text-warning">{{ subject }}</a>.
+				{{ course.total_modules }} modules.
+				Instructor: {{ course.owner.get_full_name }}
+			</p>
+			{% endwith %}
+			{% endfor %}
+		</div>
+		</div>
+
+	</section>
+
+	{% include 'inc/footer.html' %}
+
+	<script src="{% static 'js/app.js' %}"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+	</script>
+
+</body>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}My Courses{% endblock %}
+
+{% block content %}
+
+<div class="cont px-5">
+	<section id="list" class="section">
+		<div class="title">
+			<h2>Enrolled <span>Courses</span></h2>
+		</div>
+
+	<div class="module text-center row">
+		{% for course in object_list %}
+		<div class="course-info col-sm-3">
+			<h4 class="text-secondary">{{ course.title }}</h4>
+			<p><a href="{% url 'student_course_detail' course.id %}" class='btn btn-outline-warning'>Access Content</a></p>
+		</div>
+		{% empty %}
+		<p>
+			You are not enrolled in any courses yet! <a href="{% url 'home' %}#tours" class="btn btn-outline-secondary">Browse Courses</a> to enroll in a course.
+		</p>
+		{% endfor %}
+	</div>
+	</section>
+</div>
+
+{% endblock %}

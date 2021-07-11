@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}{% if object %}Edit course "{{ object.title }}"{% else %}Create a new course{% endif %}{% endblock %}
+
+{% block content %}
+<style>
+	html,
+	body {
+		max-width: 100%;
+		overflow-x: hidden;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.container-fluid {
+			width: 930px;
+			margin-left: 0px;
+		}
+
+		.btn {
+			margin-left: 0px;
+		}
+	}
+</style>
+
+<div class="container-fluid bg-dark h-100 text-white py-2">
+	<div class="container-fluid offset-3">
+		<h3 class="text-warning">{% if object %}Edit course "{{ object.title }}"{% else %}Create a new course{% endif %}</h3>
+		<div class="module py-1">
+			<h6>Course info</h6>
+			<form method="post" class="form-control w-50">
+				{{ form|crispy }}
+				{% csrf_token %}
+				<br>
+				<span><input type="submit" class="btn btn-success offset-4" value="Save course"></span>
+				<span><a href="{% url 'list' %}" class="btn btn-danger">cancel</a></span>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

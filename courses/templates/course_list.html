@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Create | Courses  {% endblock %}
+
+{% block content %}
+<div class="cont">
+<section id="create" class="section">
+	<div class="title">
+		<h2>Create <span>Courses</span></h2>
+	</div>
+	<div class="text-white text-center">
+		<div class="row ">
+			{% for course in object_list %}
+			<div class="col-sm-3 course-info">
+				<h3>{{ course.title }}</h3>
+				<p>
+					<a href="{% url 'edit' course.id %}" class="btn btn-outline-warning">Edit</a>
+					<a href="{% url 'delete' course.id %}" class="btn btn-danger">Delete</a>
+					<a href="{% url 'update' course.id %}" class="btn btn-secondary">Edit
+						modules</a>
+					<hr>
+					{% if course.modules.count > 0 %}
+					<a href="{% url 'content_list' course.modules.first.id %}"
+						class="btn btn-primary">Manage Content</a>
+					{% endif %}
+				</p>
+			</div>
+			{% empty %}
+			<p>You havent created any courses yet.</p>
+			{% endfor %}
+		</div>
+		<p>
+			<a href="{% url 'create' %}" class="butn butn-white ">Create new course</a>
+		</p>
+	</div>
+</section>
+</div>
+{% endblock %}

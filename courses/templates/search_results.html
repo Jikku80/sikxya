@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block content %}
+
+<div class="cont text-white px-5">
+	<h3 class="text-warning">Search Results</h3>
+
+	{% for course in courses %}
+	{% with subject=course.subject %}
+	<h3>
+		<a href="{% url 'course_detail' course.slug %}" class="btn btn-outline-danger">
+			{{ course.title }}
+		</a>
+	</h3>
+	<p>
+		<a href="{% url 'course_list_subject' subject.slug %}#tours" class="text-warning">{{ subject }}</a>.
+		{{ course.total_modules }} modules.
+		Instructor: {{ course.owner.get_full_name }}
+	</p>
+	{% endwith %}
+	{% endfor %}
+
+</div>
+{% endblock %}

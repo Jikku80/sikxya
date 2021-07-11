@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<header id="home">
+	<div class="banner">
+		<div class="container">
+			<h1>Log In</h1>
+			<div class="module">
+				{% if form.errors %}
+				<p>Your username & password didn't match. Please try again</p>
+				{% else %}
+				<p>Please, Use the following form to log-In</p>
+				{% endif %}
+			</div>
+			<div class="login-form offset-4">
+				<form action="{% url 'login' %}" method="post" class="w-50 text-warning fw-bold">
+					{{ form|crispy }}
+					{% csrf_token %}
+					<br>
+					<input type="hidden" name="next" value="{{ next }}" />
+					<p><input class="butn butn-white" type="submit" value="Log-in"></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</header>
+
+{% endblock %}

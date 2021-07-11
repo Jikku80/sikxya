@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Edit "{{ course.title }}"{% endblock %}
+
+{% block content %}
+<style>
+	html,
+	body {
+		overflow-x: hidden;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.container-fluid {
+			width: 930px;
+			margin-left: 0px;
+
+		}
+
+
+		.btn {
+			margin-left: 0px;
+		}
+	}
+</style>
+<div class="container-fluid bg-dark h-200 text-white py-2">
+	<div class="container-fluid offset-3">
+		<h2 class='text-warning'>Edit "{{ course.title }}"</h2>
+		<div class="module">
+			<h2>Course modules</h2>
+			<form method="post" class='form-control bg-white text-dark w-50'>
+				{{ formset|crispy }}
+				{{ formset.management_form }}
+				{% csrf_token %}
+				<input type="submit" value="Save modules" class="btn btn-success">
+				<a href="{% url 'list' %}" class='btn btn-danger'>Cancel</a>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
